@@ -18,7 +18,7 @@ scene.fullscreen=False
 
 #Massen
 m1=100
-m2=200
+m2=1
 m3=0.01
 
 #Skalierungsfaktor
@@ -34,14 +34,14 @@ G=3
 dt=0.0001
 
 #Die Positionen der Massen (drei Kugeln)
-pos1=vector(1,0,0)
+pos1=vector(0,0,0)
 pos2=vector(20,0,0)
 pos3=vector(10,0,0)
 
 #Die Geschwindigkeitsvektoren am Anfang
 v1=vector(0,0,0)
-v2=vector(0,5,1)
-v3=vector(-2,3,0)
+v2=vector(0,5,0)
+v3=vector(0,3,0)
 
 #Die drei Massen werden gezeichnet
 p1=sphere(pos=pos1, radius=r1, color=color.red)
