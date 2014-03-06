@@ -1,6 +1,12 @@
+#############################################
+#       GRAVITAION ZWISCHEN 3 OBJEKTEN      #
+#############################################
+
+#Physik Blockwoche 2f
+
 from visual import *
 
-#Modul um mit Br�chen zu rechnen
+#Modul um mit Brüchen zu rechnen
 from fractions import Fraction
 
 #Das Anzeigefenster
@@ -27,7 +33,7 @@ r3=pow(m3,Fraction(1,3))*e3
 G=3
 dt=0.0001
 
-#Die Positionen der Massen
+#Die Positionen der Massen (drei Kugeln)
 pos1=vector(1,0,0)
 pos2=vector(20,0,0)
 pos3=vector(10,0,0)
@@ -46,27 +52,26 @@ p2.trail=curve(color=p2.color)
 p3.trail=curve(color=p3.color)
 
 #Definition einer eigenen Funktion namens grav. Diese Berechnet die Kraft zwischen zwei Massen
+#Die Funktion rechnet mit den drei Variablen p, p_m und m und gibt als Resultat die Beschleunigung a
 def grav(p,p_m,m):
     r=p-p_m
-    r_mag=mag(r)
-    r_norm=norm(r)
-    a=(-G*m/(r_mag**2))*r_norm
+    a=(-G*m/(mag(r)**2))*norm(r)
     return a
 
-#Die Berechnung der Positionen
-while True:
+#Die Berechnung der Positionen der drei Kugeln in der while Schleife
+while True: #Die Schleife wird solange ausgeführt, bis man das Programm abbricht
     rate(10000)
-    
+    #Beschleunigung, Geschwindigkeit und Impuls der Masse 1
     a1=grav(p1.pos, p2.pos, m2) + grav(p1.pos, p3.pos, m3)
     dv1 =a1*dt
     v1=v1+dv1
     dp1=v1*dt
-
+    #Beschleunigung, Geschwindigkeit und Impuls der Masse 2
     a2=grav(p2.pos, p1.pos, m1) + grav(p2.pos, p3.pos, m3)
     dv2 =a2*dt
     v2=v2+dv2
     dp2=v2*dt
-
+    #Beschleunigung, Geschwindigkeit und Impuls der Masse 3
     a3=grav(p3.pos, p1.pos, m1) + grav(p3.pos, p2.pos, m2)
     dv3 =a3*dt
     v3=v3+dv3
@@ -83,10 +88,10 @@ while True:
     #Die Kamera wird auf eine der Massen konzentriert
     scene.center=p1.pos
 
-    #Kollisionsabfrage
+    #Kollisionsabfrage (Beendet das Programm mit der Meldung "Kollision!" wenn sich zwei Kugeln zu nahe kommen
     if mag(p1.pos-p2.pos)<(r1+r2) or mag(p1.pos-p3.pos)<(r1+r3) or mag(p3.pos-p2.pos)<(r3+r2):
-        print "Kollision!!"
-        break
+        print "Kollision!!" #print ist der Befehl um etas in die Shell zu schreiben
+        break #break bringt das Programm zum Anhalten
 
     
     
