@@ -9,13 +9,13 @@ auto2.trail = curve(color=auto2.color)
 
 
 #Anfangswerte
-v1 = vector(30,0,0)
-v2 = vector(50,0,0)
+v1 = vector(10,0,0)
+v2 = vector(15,0,0)
 
 #Animations Loop
 dt = 0.2
 zeit = 0
-while zeit < 6:
+while zeit < 25:
     rate(20)
     auto1.pos = auto1.pos + v1*dt
     auto2.pos = auto2.pos + v2*dt
