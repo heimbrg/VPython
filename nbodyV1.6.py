@@ -1,27 +1,24 @@
-#Libraries
 from visual import *
-from random import randint
 
-#Variables
-particles = []
-num = 50
-mass = 10000000000000
-dt = 0.02
-G = 6.67384*10**(-11)
+#Objekte erzeugen
+auto1 = box(pos=vector(-200,9,0), size=vector(20,12,8), color=color.blue)
+auto2 = box(pos=vector(-200,-9,0), size=vector(20,12,8), color=color.red)
+track = box(pos=vector(0,0,-5), size=vector(420,35,2), color=color.white)
+auto1.trail = curve(color=auto1.color)
+auto2.trail = curve(color=auto2.color)
 
-#Object Gen
-for i in xrange(0,num):
-    particles.append(sphere(pos = vector(randint(-200,200),randint(-200,200),randint(-200,200)), f = vector(0,0,0), v = vector(0,0,0), a = vector(0,0,0), make_trail=True))
 
-#Main loop
-while True:
-    rate(100000)
-    for i in particles:
-        i.f = vector(0,0,0)
-        for j in particles:
-            if i.pos - j.pos != vector(0,0,0):
-                i.f = i.f + ((G*mass**2)/mag(i.pos-j.pos)**2)*(j.pos-i.pos)
-        i.a = i.f/mass
-        i.v = i.v + i.a*dt
-        i.pos = i.pos + i.v*dt
-        
+#Anfangswerte
+v1 = vector(30,0,0)
+v2 = vector(50,0,0)
+
+#Animations Loop
+dt = 0.2
+zeit = 0
+while zeit < 6:
+    rate(20)
+    auto1.pos = auto1.pos + v1*dt
+    auto2.pos = auto2.pos + v2*dt
+    zeit = zeit + dt
+    auto1.trail.append(pos=auto1.pos)
+    auto2.trail.append(pos=auto2.pos)
