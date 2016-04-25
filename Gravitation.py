@@ -2,7 +2,7 @@
 #       GRAVITAION ZWISCHEN 3 OBJEKTEN      #
 #############################################
 
-#Physik Blockwoche Sekunda 2015
+#Physik Blockwoche Sekunda 2016
 
 from visual import *
 
